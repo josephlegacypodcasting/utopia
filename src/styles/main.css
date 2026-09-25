@@ -1,0 +1,552 @@
+  :root{
+    /* Brand palette sampled from the Utopia flyer and the logo artwork.
+       The brand runs on TWO blues: --blue is the UI blue the flyer itself
+       uses for headings, icon badges and the footer bar; --blue-bright is
+       the lighter blue inside the "WellCare" wordmark. Amber is an accent
+       for single words, never for body copy. */
+    --blue:#004AAD;
+    --blue-bright:#0C7ABD;
+    --blue-deep:#062A5E;
+    --amber:#F8A41D;        /* fills and graphic devices ONLY */
+    --amber-deep:#DE8C09;
+    /* Brand amber on white is 2.04:1 — it fails WCAG as text at any size.
+       These two are the legible members of the family: use them whenever
+       amber has to BE the text, and keep --amber for fills. */
+    --amber-text:#A16B13;   /* 4.54:1 on white  — passes AA */
+    --amber-on-blue:#F9B64A;/* 4.58:1 on --blue — passes AA */
+
+    --white:#FFFFFF;
+    --paper:#FFFFFF;
+    --paper-soft:#F3F7FC;
+    --paper-edge:#E4EDF8;
+    --ink:#111418;
+    --ink-soft:#4A5561;
+
+    --line:rgba(0,74,173,.16);
+    --radius:12px;
+    --radius-lg:22px;
+
+    /* Object Sans is a LICENSED font (Pangram Pangram) — it is not on Google
+       Fonts and is not bundled here. Until Utopia supplies a webfont licence,
+       the page falls back to Outfit, the closest free geometric sans.
+       To switch: drop the woff2 files in public/assets/fonts/ and uncomment
+       the @font-face block below. Nothing else needs to change. */
+    --font-display:'Object Sans','Outfit','DM Sans',-apple-system,sans-serif;
+    --font-body:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+
+  /* FONT TODO (Utopia): uncomment once the Object Sans licence and webfont
+     files exist. The flyer uses Bold and RegularSlanted.
+  @font-face{
+    font-family:'Object Sans';font-style:normal;font-weight:700;font-display:swap;
+    src:url('/assets/fonts/ObjectSans-Bold.woff2') format('woff2');
+  }
+  @font-face{
+    font-family:'Object Sans';font-style:italic;font-weight:400;font-display:swap;
+    src:url('/assets/fonts/ObjectSans-RegularSlanted.woff2') format('woff2');
+  }
+  */
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--font-body);
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{font-family:var(--font-display);}
+  img{max-width:100%;display:block;}
+  a{color:var(--blue);}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+
+  /* Eyebrow labels (matches investor deck style) */
+  .eyebrow{
+    display:flex;align-items:center;gap:10px;
+    font-family:var(--font-display);font-weight:700;font-size:12px;
+    letter-spacing:.24em;text-transform:uppercase;color:var(--blue);
+    margin-bottom:18px;
+  }
+  .eyebrow::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--amber);}
+
+  /* ============ NAV ============ */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1120px;margin:0 auto;}
+  .logo{display:flex;align-items:center;}
+  .logo img{height:34px;width:auto;}
+  footer .logo img{height:40px;}
+  .nav-links{display:flex;gap:26px;align-items:center;font-size:14px;font-weight:600;}
+  .nav-links a{color:var(--ink);text-decoration:none;}
+  .nav-links a:hover{color:var(--blue);}
+  .btn{
+    display:inline-block;background:var(--blue);color:var(--white);
+    font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:.01em;
+    padding:13px 26px;border:none;border-radius:999px;cursor:pointer;
+    text-decoration:none;transition:transform .12s ease, background .12s ease;
+  }
+  .btn:hover{background:#003B8A;transform:translateY(-1px);}
+  .btn:focus-visible{outline:3px solid var(--ink);outline-offset:2px;}
+  .btn-ghost{background:transparent;color:var(--blue);border:2px solid var(--blue);}
+  .btn-ghost:hover{background:var(--blue);color:var(--white);}
+
+  /* ============ HERO ============ */
+  header.hero{padding:84px 0 72px;position:relative;overflow:hidden;}
+  .hero .kicker{
+    font-family:var(--font-display);font-weight:700;font-size:13px;
+    letter-spacing:.26em;text-transform:uppercase;color:var(--blue);margin-bottom:24px;
+  }
+  .hero h1{
+    font-weight:800;letter-spacing:-.025em;line-height:1.02;
+    font-size:clamp(40px,6.6vw,78px);max-width:17ch;
+  }
+  /* Amber as a graphic device, not as ink: the word keeps full contrast
+     while the brand colour still carries the emphasis. */
+  .hero h1 .pop{
+    color:var(--ink);
+    background-image:linear-gradient(var(--amber),var(--amber));
+    background-repeat:no-repeat;background-size:100% .13em;background-position:0 92%;
+  }
+  .hero .sub{
+    margin-top:24px;font-size:19px;max-width:58ch;color:var(--ink-soft);
+  }
+  .hero .cta-row{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap;}
+  .hero .for-brokers{
+    margin-top:56px;padding-top:22px;border-top:1px solid var(--line);
+    font-size:14px;font-weight:600;letter-spacing:.02em;color:#4a4a4a;max-width:64ch;
+  }
+
+  /* ============ SECTIONS ============ */
+  section{padding:76px 0;}
+  section h2{
+    font-weight:900;font-size:clamp(30px,4.4vw,50px);letter-spacing:-.015em;
+    line-height:1.02;margin-bottom:18px;
+  }
+  .section-intro{font-size:17px;max-width:62ch;color:var(--ink-soft);}
+
+  /* Value prop */
+  .value{background:var(--paper-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+
+  /* Sub-section label bar */
+  .sub-label{
+    display:flex;align-items:center;gap:16px;margin:64px 0 28px;
+  }
+  .sub-label .tag{
+    background:var(--blue);color:var(--white);
+    font-family:var(--font-display);font-weight:700;font-size:12px;
+    letter-spacing:.2em;text-transform:uppercase;
+    padding:9px 18px 8px;border-radius:999px;white-space:nowrap;
+  }
+  .sub-label .tag em{font-style:normal;color:var(--amber-on-blue);margin-right:10px;}
+  .sub-label::after{content:"";flex:1;height:1px;background:var(--line);}
+  .sub-label .hint{
+    font-size:13.5px;color:#666;font-style:italic;white-space:nowrap;
+  }
+
+  /* Four-way win cards */
+  .win-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .win{
+    background:var(--white);border:1px solid var(--line);border-radius:var(--radius-lg);
+    padding:0;overflow:hidden;display:flex;flex-direction:column;position:relative;
+    transition:transform .16s ease, box-shadow .16s ease;
+  }
+  .win::before{content:"";display:block;height:5px;background:var(--blue);}
+  .win:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,74,173,.14);}
+  .win .win-inner{padding:24px 20px 26px;display:flex;flex-direction:column;gap:14px;flex:1;}
+  .win .win-icon{
+    width:52px;height:52px;border-radius:50%;background:var(--blue);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .win .win-icon svg{width:25px;height:25px;stroke:var(--white);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+  .win h3{
+    font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);
+  }
+  .win h3 .wins{color:var(--amber-text);}
+  .win p{font-size:14.5px;color:var(--ink-soft);}
+
+  /* Broker pillars: dark cards with big numerals */
+  .broker-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .pillar{
+    background:var(--blue);color:var(--white);border-radius:var(--radius-lg);
+    padding:30px 26px 32px;position:relative;overflow:hidden;
+    transition:transform .16s ease, box-shadow .16s ease;
+  }
+  .pillar:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,74,173,.3);}
+  .pillar .num{
+    font-family:var(--font-display);font-weight:900;font-size:64px;line-height:1;
+    color:transparent;-webkit-text-stroke:1.5px var(--amber);
+    margin-bottom:18px;
+  }
+  .pillar h3{font-size:19px;font-weight:800;margin-bottom:10px;letter-spacing:-.01em;color:var(--white);}
+  .pillar p{font-size:14.5px;color:#CBDCF2;}
+  .pillar .pillar-foot{
+    margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.14);
+    font-family:var(--font-display);font-weight:700;font-size:11.5px;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--amber-on-blue);
+  }
+
+  /* Carriers */
+  /* Carriers */
+  .carriers{padding:60px 0;}
+  .carrier-strip-label{
+    font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.32em;
+    text-transform:uppercase;text-align:center;margin-bottom:28px;color:var(--ink-soft);
+  }
+  .carrier-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
+  }
+  .carrier{
+    background:var(--white);border:1px solid var(--line);border-radius:var(--radius-lg);
+    min-height:96px;display:flex;align-items:center;justify-content:center;padding:20px 24px;
+  }
+  .carrier img{max-height:44px;max-width:82%;width:auto;object-fit:contain;}
+  /* Logos extracted from the 2026 investor deck. TECH NOTE: for production, replace
+     these embedded images with hosted SVG versions per each carrier's brand guidelines. */
+
+  /* Resources */
+  .resources{background:var(--blue-deep);color:#D6E4F5;}
+  .resources h2{color:var(--white);}
+  .resources .eyebrow{color:var(--white);}
+  .resources .section-intro{color:#AFC8E4;}
+  .res-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:20px;margin-top:44px;}
+  .video-card{
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius-lg);
+    padding:22px;display:flex;flex-direction:column;gap:16px;
+  }
+  .video-frame{
+    aspect-ratio:16/9;background:rgba(0,0,0,.28);border-radius:var(--radius);
+    display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;
+    border:1px dashed rgba(255,255,255,.25);
+  }
+  .play-btn{
+    width:64px;height:64px;border-radius:50%;background:var(--amber);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;
+  }
+  .play-btn::after{content:"";border-left:18px solid var(--white);border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:4px;}
+  .video-frame .placeholder-note{font-size:12px;color:#8f8f8f;letter-spacing:.06em;text-transform:uppercase;}
+  .video-card h3{color:var(--white);font-size:19px;font-weight:800;}
+  .video-card p{font-size:14.5px;color:#AFC8E4;}
+  .share-row{display:flex;gap:10px;flex-wrap:wrap;}
+  .btn-small{
+    font-family:var(--font-display);font-weight:700;font-size:12.5px;letter-spacing:.06em;
+    text-transform:uppercase;padding:10px 18px;border-radius:999px;cursor:pointer;
+    background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.4);text-decoration:none;
+    transition:border-color .12s;
+  }
+  .btn-small:hover{border-color:var(--amber);color:var(--amber);}
+  .btn-small:focus-visible{outline:2px solid var(--white);outline-offset:2px;}
+  .downloads{display:flex;flex-direction:column;gap:14px;}
+  .dl-card{
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius-lg);
+    padding:22px;display:flex;gap:16px;align-items:flex-start;flex:1;
+  }
+  .dl-icon{
+    min-width:46px;height:56px;background:var(--white);border-radius:5px;position:relative;
+    display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;
+    font-family:var(--font-display);font-weight:800;font-size:10px;color:var(--blue);letter-spacing:.08em;
+  }
+  .dl-icon::before{content:"";position:absolute;top:0;right:0;border-top:14px solid var(--blue-deep);border-left:14px solid var(--paper-edge);}
+  .dl-card h3{color:var(--white);font-size:16.5px;font-weight:800;margin-bottom:6px;}
+  .dl-card p{font-size:13.5px;color:#AFC8E4;margin-bottom:12px;}
+  .dl-link{
+    font-family:var(--font-display);font-weight:700;font-size:12.5px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--amber);text-decoration:none;
+  }
+  .dl-link:hover{text-decoration:underline;}
+
+  /* Email template */
+  .email-section .email-box{
+    margin-top:36px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius-lg);
+    overflow:hidden;max-width:780px;
+  }
+  .email-head{
+    background:var(--paper-edge);padding:14px 22px;display:flex;justify-content:space-between;align-items:center;
+    border-bottom:1px solid var(--line);
+  }
+  .email-head span{font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.22em;text-transform:uppercase;}
+  .email-body{padding:26px 26px 30px;font-size:15px;white-space:pre-line;color:var(--ink);}
+  .copy-feedback{font-size:12px;color:var(--blue);font-weight:600;margin-left:10px;display:none;}
+
+  /* Form */
+  .form-section{background:var(--white);border-top:1px solid var(--line);}
+  .form-card{
+    margin-top:40px;background:var(--paper-soft);border:1px solid var(--line);border-radius:var(--radius-lg);
+    padding:36px;max-width:780px;
+  }
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .field{display:flex;flex-direction:column;gap:7px;}
+  .field.full{grid-column:1/-1;}
+  label{font-family:var(--font-display);font-weight:700;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);}
+  input,select{
+    font-family:var(--font-body);font-size:15px;padding:13px 14px;
+    border:1.5px solid rgba(0,74,173,.25);border-radius:var(--radius);background:var(--white);color:var(--ink);
+  }
+  input:focus,select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,74,173,.12);}
+  .form-note{font-size:13px;color:var(--ink-soft);margin-top:16px;}
+  .form-submit{margin-top:26px;}
+
+  /* Footer */
+  footer{padding:44px 0 60px;border-top:1px solid var(--line);}
+  .foot-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center;}
+  .foot-inner p{font-size:13.5px;color:#555;}
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:900px){
+    .win-grid{grid-template-columns:repeat(2,1fr);}
+    .broker-pillars{grid-template-columns:1fr;}
+    .res-grid{grid-template-columns:1fr;}
+    .carrier-grid{grid-template-columns:repeat(2,1fr);}
+    .nav-links a:not(.btn){display:none;}
+  }
+  @media (max-width:600px){
+    .win-grid{grid-template-columns:1fr;}
+    .form-grid{grid-template-columns:1fr;}
+    section{padding:56px 0;}
+    header.hero{padding:60px 0 50px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .btn{transition:none;}
+  }
+
+  /* Referral form submission feedback */
+  .form-status{
+    font-size:14px;font-weight:600;margin-top:16px;
+    padding:12px 14px;border-radius:var(--radius);
+    border:1px solid var(--line);
+  }
+  .form-status[data-state="pending"]{color:#555;background:rgba(25,25,25,.04);}
+  .form-status[data-state="ok"]{color:var(--blue);background:rgba(0,74,173,.08);border-color:rgba(0,74,173,.3);}
+  .form-status[data-state="error"]{color:#C0392B;background:rgba(192,57,43,.08);border-color:rgba(192,57,43,.3);}
+
+  /* ============================================================
+     v1.1 — sections added after stakeholder review
+     ============================================================ */
+
+  /* Placeholder copy awaiting real content from Utopia.
+     TODO: delete this rule once every .needs-copy block is filled in —
+     it is deliberately loud so nothing ships with bracketed text. */
+  .needs-copy{
+    background:repeating-linear-gradient(45deg,rgba(214,51,132,.08),rgba(214,51,132,.08) 10px,transparent 10px,transparent 20px);
+    outline:1px dashed rgba(214,51,132,.55);outline-offset:3px;
+    color:#A11D68;
+  }
+
+  /* ---------- Where's the catch ---------- */
+  .catch{background:var(--blue);color:#DCE8F7;}
+  .catch h2{color:var(--white);}
+  .catch .section-intro{color:#c9c2b2;}
+  .catch .eyebrow{color:var(--white);}
+  .catch-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px;}
+  .catch-item{
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);
+    border-radius:var(--radius-lg);padding:28px 26px;
+  }
+  .catch-item h3{font-size:19px;margin-bottom:10px;color:var(--white);}
+  .catch-item p{font-size:15px;color:#CBDCF2;}
+  .catch .needs-copy{color:#FFD6EC;}
+
+  /* ---------- Carrier footnote ---------- */
+  .carrier-note{
+    margin-top:22px;font-size:13px;color:#555;text-align:center;max-width:62ch;
+    margin-left:auto;margin-right:auto;
+  }
+
+  /* ---------- Proof / numbers ---------- */
+  .proof{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px;}
+  .stat{
+    border:1px solid var(--line);border-radius:var(--radius-lg);
+    padding:28px 24px;background:var(--paper-soft);
+  }
+  .stat-num{
+    font-family:var(--font-display);font-weight:900;font-size:42px;line-height:1.05;
+    color:var(--blue);margin-bottom:12px;
+  }
+  .stat-label{font-size:15px;font-weight:600;line-height:1.4;}
+  .stat-src{font-size:12px;color:#777;margin-top:10px;}
+  .proof-quote{
+    margin-top:32px;border-left:3px solid var(--amber);
+    padding:4px 0 4px 22px;max-width:70ch;
+  }
+  .proof-quote p{font-size:19px;line-height:1.5;}
+  .proof-quote cite{
+    display:block;margin-top:12px;font-style:normal;font-size:13px;font-weight:700;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);
+  }
+
+  /* ---------- Fit quiz ---------- */
+  .quiz-section{background:var(--white);border-top:1px solid var(--line);}
+  .quiz-card{
+    margin-top:36px;max-width:720px;background:var(--paper-soft);
+    border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px 30px 24px;
+  }
+  .quiz-progress{height:4px;background:rgba(0,74,173,.14);border-radius:999px;overflow:hidden;margin-bottom:26px;}
+  .quiz-bar{display:block;height:100%;width:25%;background:var(--blue);transition:width .25s ease;}
+  .quiz-count{
+    font-family:var(--font-display);font-weight:700;font-size:11.5px;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;
+  }
+  .quiz-step h3{font-size:24px;margin-bottom:20px;}
+  .quiz-opts{display:flex;flex-wrap:wrap;gap:10px;}
+  .quiz-opt{
+    font-family:var(--font-body);font-size:15px;font-weight:600;
+    padding:12px 20px;background:var(--white);color:var(--ink);
+    border:1.5px solid rgba(0,74,173,.25);border-radius:999px;cursor:pointer;
+    transition:background .14s ease,border-color .14s ease,color .14s ease;
+  }
+  .quiz-opt:hover{border-color:var(--blue);color:var(--blue);background:rgba(0,74,173,.05);}
+  .quiz-opt:focus-visible{outline:2px solid var(--blue);outline-offset:2px;}
+  .quiz-nav{margin-top:22px;min-height:20px;}
+  .quiz-back{
+    background:none;border:none;cursor:pointer;color:#666;
+    font-family:var(--font-body);font-size:13.5px;font-weight:600;padding:0;
+  }
+  .quiz-back:hover{color:var(--ink);}
+  .quiz-verdict{
+    font-family:var(--font-display);font-weight:900;font-size:28px;
+    color:var(--blue);margin-bottom:10px;
+  }
+  .quiz-reason{font-size:16px;max-width:56ch;}
+  .quiz-recap{list-style:none;margin:20px 0 0;display:flex;flex-wrap:wrap;gap:8px;}
+  .quiz-recap li{
+    font-size:12.5px;font-weight:600;background:var(--white);
+    border:1px solid var(--line);border-radius:999px;padding:6px 13px;color:var(--blue);
+  }
+  .quiz-actions{margin-top:26px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+
+  /* ---------- After you refer ---------- */
+  .pledge{
+    font-family:var(--font-display);font-weight:800;font-size:22px;
+    margin-top:28px;padding-left:18px;border-left:4px solid var(--amber);
+    max-width:56ch;line-height:1.35;
+  }
+  .steps{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0 0;}
+  .steps li{display:flex;gap:14px;align-items:flex-start;}
+  .step-n{
+    flex:0 0 auto;width:30px;height:30px;border-radius:50%;
+    background:var(--blue);color:var(--white);
+    font-family:var(--font-display);font-weight:800;font-size:14px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .steps h3{font-size:17px;margin-bottom:5px;}
+  .steps p{font-size:14.5px;color:var(--ink-soft);}
+
+  /* ---------- Form additions ---------- */
+  .opt{
+    font-family:var(--font-body);font-weight:500;font-size:11px;
+    letter-spacing:0;text-transform:none;color:var(--ink-soft);margin-left:6px;
+  }
+  .field-hint{font-size:12.5px;color:var(--ink-soft);}
+  textarea{
+    font-family:var(--font-body);font-size:15px;padding:13px 14px;
+    border:1.5px solid rgba(0,74,173,.25);border-radius:var(--radius);
+    background:var(--white);color:var(--ink);resize:vertical;
+  }
+  textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,74,173,.12);}
+
+  /* ---------- Email variants ---------- */
+  .email-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px;}
+  .email-tab{
+    font-family:var(--font-body);font-size:13.5px;font-weight:600;
+    padding:9px 18px;background:transparent;color:var(--ink-soft);
+    border:1.5px solid rgba(0,74,173,.22);border-radius:999px;cursor:pointer;
+    transition:background .14s ease,color .14s ease,border-color .14s ease;
+  }
+  .email-tab:hover{border-color:var(--blue);color:var(--blue);}
+  .email-tab.is-active{background:var(--blue);color:var(--white);border-color:var(--blue);}
+  .email-tab:focus-visible{outline:2px solid var(--blue);outline-offset:2px;}
+  .email-section .email-box{margin-top:14px;}
+  .email-actions{display:flex;align-items:center;gap:8px;}
+  #emailMailto{text-decoration:none;display:inline-block;}
+
+  /* ---------- Clinical / privacy trust ---------- */
+  .trust{background:var(--paper-soft);border-top:1px solid var(--line);}
+  .trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px;}
+  .trust-item{
+    background:var(--white);border:1px solid var(--line);
+    border-radius:var(--radius-lg);padding:26px 24px;
+  }
+  .trust-item h3{font-size:18px;margin-bottom:10px;}
+  .trust-item p{font-size:14.5px;color:var(--ink-soft);}
+
+  @media (max-width:900px){
+    .catch-grid{grid-template-columns:1fr;}
+    .stat-grid{grid-template-columns:1fr;}
+    .steps{grid-template-columns:1fr;}
+    .trust-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:620px){
+    .quiz-card{padding:24px 20px 20px;}
+    .quiz-step h3{font-size:20px;}
+    .stat-num{font-size:34px;}
+    .pledge{font-size:19px;}
+    .email-actions{flex-wrap:wrap;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .quiz-bar{transition:none;}
+    .quiz-opt,.email-tab{transition:none;}
+  }
+
+  /* ============================================================
+     v2 — brand adaptation (Utopia flyer + logo artwork)
+     ============================================================ */
+
+  /* Halftone dot motif, lifted from the flyer's top-right corner.
+     Decorative only, so it stays out of the accessibility tree. */
+  header.hero::after{
+    content:"";position:absolute;top:-90px;right:-130px;
+    width:540px;height:540px;pointer-events:none;
+    background-image:radial-gradient(var(--blue) 1.7px,transparent 1.8px);
+    background-size:13px 13px;
+    -webkit-mask-image:radial-gradient(circle at 58% 42%,#000 42%,transparent 72%);
+    mask-image:radial-gradient(circle at 58% 42%,#000 42%,transparent 72%);
+    opacity:.3;
+  }
+  header.hero .wrap{position:relative;z-index:1;}
+
+  /* Footer: light block with the flyer's blue contact bar under it. */
+  footer{padding:52px 0 40px;border-top:1px solid var(--line);}
+  .foot-inner{
+    display:flex;justify-content:space-between;gap:20px;
+    flex-wrap:wrap;align-items:center;margin-bottom:26px;
+  }
+  .foot-tag{
+    font-family:var(--font-display);font-style:italic;font-size:17px;
+    color:var(--ink-soft);max-width:44ch;
+  }
+  .foot-bar{
+    background:var(--blue);border-radius:var(--radius-lg);
+    padding:20px 30px;display:flex;align-items:center;gap:12px 28px;flex-wrap:wrap;
+    font-size:15px;font-weight:500;color:#CBDCF2;
+  }
+  .foot-bar a{
+    color:var(--white);font-weight:700;text-decoration:none;
+    border-bottom:1.5px solid rgba(255,255,255,.45);
+  }
+  .foot-bar a:hover{border-bottom-color:var(--amber);color:var(--amber);}
+
+  /* The wordmark carries its own colour, so it needs room to breathe. */
+  .logo{text-decoration:none;}
+  .logo img{height:34px;width:auto;}
+  footer .logo img{height:42px;}
+
+  @media (max-width:620px){
+    /* On phones the motif sat behind the headline, so it pulls back. */
+    header.hero::after{width:300px;height:300px;top:-80px;right:-150px;opacity:.16;}
+    .foot-bar{padding:18px 22px;}
+    .logo img{height:28px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .win:hover,.pillar:hover{transform:none;}
+  }
+
+  /* Honeypot: off-screen, never display:none — see the note in index.html. */
+  .hp-field{
+    position:absolute;left:-9999px;top:auto;
+    width:1px;height:1px;overflow:hidden;
+  }

@@ -1,0 +1,16 @@
+{
+  "name": "utopia-broker-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Utopia WellCare — Broker Referral Hub landing page",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "build:ghl": "npm run build && node scripts/build-single-file.mjs"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0"
+  }
+}
