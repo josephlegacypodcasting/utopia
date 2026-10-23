@@ -1,117 +1,142 @@
-# Pendientes de contenido — v1.1
+# Pendientes de contenido
 
-Todo lo que la página necesita de Utopia antes de poder publicarse. Nada de
-esto se puede inventar desde fuera: son datos clínicos, de cobertura y de
-compensación.
+Estado a 7 oct 2026, tras el envío de Anna con los datos de outcomes, el
+one-pager y las notas de feedback del cliente (30 sep 2026).
 
-En el código, cada hueco está marcado con `CONTENT TODO`, `LEGAL TODO` o
-`TECH NOTE`, y los textos provisionales llevan la clase `.needs-copy`, que los
-pinta con rayas naranjas y borde discontinuo para que **sea imposible publicar
-sin verlos**. Cuando no quede ninguno, borra la regla `.needs-copy` de
-`src/styles/main.css`.
-
-Comprobación rápida de cuántos quedan:
+Los textos provisionales llevan la clase `.needs-copy`, que los pinta con rayas
+y borde discontinuo para que **sea imposible publicar sin verlos**. Quedan **3**:
 
 ```bash
 grep -c "needs-copy" index.html
 ```
 
+Cuando llegue a 0, borra la regla `.needs-copy` de `src/styles/main.css`.
+
 ---
 
-## Bloqueantes (la página no debería salir sin esto)
+## Hecho en esta ronda
 
-### 1. ¿Quién paga? — sección "Where's the Catch"
-El mecanismo exacto de facturación. Es la primera objeción de cualquier broker
-y ahora mismo la página afirma que no hay perdedor sin explicar de dónde sale
-el dinero.
+| # | Qué | Fuente |
+| --- | --- | --- |
+| 1 | **Quién paga Utopia** | Notas del cliente, 30 sep |
+| 2 | **Compensación del broker** (ahora "Is there broker compensation included?") | Notas del cliente, 30 sep |
+| 5 | **Las tres cifras de The Numbers** | Engagement de las notas; outcomes del informe 7.26 |
+| 6 | **Testimonio de broker** (Holly Timbur, Alera Group) | Notas del cliente, 30 sep |
+| 9a | **Utopia Overview One-Pager** | PDF del cliente |
+| 12 | **Webhook de GHL** | Conectado y verificado |
 
-### 2. ¿Cobra el broker? — misma sección
-¿Hay comisión, revenue share o referral fee? Si **no** la hay, decirlo es más
-fuerte que callarlo: no hay conflicto de interés y no hay nada que declarar.
-Si la hay, hay que declararla y revisar la obligación de disclosure.
+Rewordings pedidos por el cliente, ya aplicados:
 
-### 3. Credibilidad clínica y privacidad — sección "Before You Vouch For Us"
-- Credenciales de los clínicos (RDN, licenciatura por estado, proceso de credencialización)
-- Postura HIPAA y qué ve y qué no ve el empleador (que el dato individual **no**
-  vuelve al empleador hay que decirlo explícitamente)
-- Qué reporting recibe el empleador, con qué frecuencia y a qué nivel de agregado
+- "If it costs nobody anything…" → "If it doesn't cost anything, how does it work?"
+- "What actually happens once a group turns it on" → "What happens after a group launches"
+- "What the broker gets paid" → "Is there broker compensation included?"
+- "Before You Vouch For Us" → "Before You Start the Conversation"
+
+---
+
+## Bloqueantes
+
+### 3. Credibilidad clínica y privacidad — los 3 placeholders que quedan
+Sección "Before You Start the Conversation". El cliente no ha respondido a esto
+todavía y son las primeras preguntas de cualquier HR:
+
+- **Quién da la atención**: credenciales (RDN), licenciatura por estado, proceso
+  de credencialización, cuántos clínicos.
+- **Cómo se tratan los datos de salud**: postura HIPAA, y que el dato individual
+  **no** vuelve al empleador hay que decirlo explícitamente.
+- **Qué ve el empleador**: qué reporting recibe, con qué frecuencia y a qué nivel
+  de agregado.
 
 ### 4. Revisión legal de los logos de carriers
-Uso de 8 marcas registradas. Necesita sign-off de compliance. La nota al pie
-sobre que la cobertura se determina a nivel de plan y no de carrier también
-debería revisarla quien lleve compliance.
+Uso de 8 marcas registradas, ahora además en un repo público. Necesita sign-off
+de compliance.
 
 ---
 
-## Datos (la sección se borra si no llegan)
+## Confirmaciones pedidas a Utopia
 
-### 5. Franja de cifras — sección "The Numbers"
-Tres cifras con **fuente, tamaño de muestra y fecha** bajo cada una:
-- % de empleados elegibles que se inscriben en los primeros 90 días
-- Un outcome clínico que le importe al plan (p. ej. cambio medio de A1c o de peso a 6 meses)
-- Coste añadido para empleador y empleado (esta se puede afirmar hoy, solo hay que confirmar la redacción)
+### A. Tamaños de muestra de los outcomes
+El informe no los declara. Los **derivé** de los decimales sin redondear del
+Excel, y encajan exactos en las 12 filas de cada columna:
 
-> Si los datos no están listos, **borra la sección entera**. Ante brokers
-> licenciados una cifra sin fuente hace más daño que la ausencia de cifras.
+| Columna | n |
+| --- | --- |
+| 3 citas completadas | 301 |
+| 6 citas completadas | 148 |
+| 9+ citas completadas | 133 (health metrics) / 130 (medical conditions) |
 
-### 6. Testimonio de un broker
-Una o dos frases de un broker que ya haya referido un grupo, con permiso para
-usar nombre y firma. Pesa más que cualquier cosa que diga Utopia de sí misma.
+La página publica "111 of 148" y "97 of 148". **Que Utopia lo confirme antes de
+lanzar.**
+
+### B. Ventana de medición
+No consta en ningún sitio. El fichero se llama "7.26" y el PDF se generó el 4
+ago 2026, así que la página dice "July 2026". Confirmar el periodo real que
+cubren los datos.
+
+### C. Permiso de Holly Timbur
+Tenemos sus palabras en las notas del cliente, pero hace falta que haya
+aceptado que su nombre y firma salgan en una página pública. Se corrigió
+puntuación; las palabras están intactas.
 
 ---
 
-## Criterios de calificación
+## Pendiente de recibir
 
 ### 7. Reglas del quiz — `src/js/quiz.js`
-El objeto `FIT_RULES` está **vacío a propósito**: mientras las listas estén
-vacías nadie queda excluido y todos los grupos salen como fit. Es el default
-seguro — sale más barato hablar con un grupo que no califica que rechazar a uno
-que sí. Rellénalas cuando existan los umbrales reales:
-
-- `belowMinimumSizes` — ¿hay tamaño mínimo de grupo?
-- `unsupportedFunding` — ¿el tipo de funding descalifica alguna vez?
-- `unsupportedCarriers` — ¿algún carrier queda fuera?
-
-El quiz nunca da un "no" rotundo por diseño: el peor veredicto es "hablemos".
-Un broker al que un quiz rechaza cierra la pestaña.
-
----
-
-## Assets
+`FIT_RULES` sigue **vacío a propósito**: mientras lo esté, nadie queda excluido.
+Falta saber si hay tamaño mínimo de grupo o si algún funding/carrier descalifica.
 
 ### 8. Vídeo de 2 minutos
-- Embed real en lugar del placeholder (`index.html`, sección Resources)
-- URL pública para el botón "Copy video link to share" (hoy es `[SHAREABLE VIDEO URL]`)
-- El botón de play del hero es decorativo, no hay vídeo conectado
+Valeria lo está montando. Cuando llegue: sustituir el placeholder por el embed
+y poner la URL pública en `data-link` del botón "Copy video link to share".
+El botón de play del hero sigue siendo decorativo.
 
-### 9. Los dos one-pagers en PDF
-Ambos `Download PDF` apuntan a `#`. Necesitan los PDF alojados.
+### 9b. Broker Talking Points — RESUELTO SIN PDF
+Los 6 puntos que mandó el cliente el 30 sep están **en la página**, dentro de un
+desplegable en la sección de recursos, con botón de copiar.
 
-> Ojo con el orden de lanzamiento: toda la propuesta de valor de la página para
-> el broker es "reenvía esto a tu cliente". Hasta que el vídeo y al menos un PDF
-> existan, la página no puede hacer su trabajo.
+El criterio: el one-pager de overview se **reenvía al cliente**, pero los
+talking points los usa el **bróker**, que no los reenvía a nadie. No necesitan
+ser una descarga, y así desaparece el enlace muerto a `#`.
 
-### 10. Licencia de Object Sans
-Es la tipografía de display del flyer y es de pago (Pangram Pangram). La página
-usa **Outfit** como sustituta libre mientras tanto. Hace falta decidir: comprar
-la licencia webfont y soltar los `.woff2` en `public/assets/fonts/`, o quedarse
-con Outfit. Ver el bloque `FONT TODO` en `src/styles/main.css`.
+**Entrante (Anna, 15 oct):** Utopia está produciendo un PDF para este hueco,
+reenfocado como *"what's in it for them"*. Cuando llegue, se añade como enlace
+de descarga dentro de esa tarjeta y **los seis puntos se quedan visibles** — no
+volver a esconder el texto detrás de la descarga.
 
-### 11. Logos en vectorial
-El wordmark y el favicon se generaron desde PNG. Si existen los originales en
-SVG, sustituirlos: pesan menos y escalan sin perder nitidez.
+### Testimonios de pacientes — HECHO
+Sección nueva **"In Their Own Words"**, entre The Numbers y Share With Your
+Clients: 4 citas en rejilla 2x2, sacadas de la página 2 del mailer de miembros
+que mandó Anna el 15 oct. Solo se normalizó la puntuación; no se cambió ni
+recortó ninguna palabra.
+
+De las 10 disponibles elegí estas 4 pensando en el bróker, no en el paciente:
+una que arranca reconociendo que el miembro **esperaba poco**, una ligada a
+**peso** (que es justo lo que mide el 65% de la sección anterior), una de
+**vuelta a consulta**, y una muy **directa**.
+
+**CONFIRMAR con Utopia:** el mailer las atribuye a miembros de *Teamsters Local
+830*. Nombrar al grupo las haría pesar más, pero ese mailer se envió **a** esos
+miembros, no se publicó como caso de éxito, así que la página pone
+"Plan member". Si Utopia autoriza nombrar al cliente, se cambian los `<cite>`.
+
+Nota: Anna creía haber mandado **dos** documentos de testimonios, pero
+`UWC_Teamsters_Q3 Mailer_2026.pdf` y `Mailer with testimonials 26 (1).pdf` son
+el **mismo fichero** (SHA256 idéntico). Si había una segunda fuente, no llegó.
 
 ---
 
-## Integración
+## Técnicos
 
-### 12. Webhook de GoHighLevel — HECHO
-Conectado y verificado contra el endpoint real (HTTP 200). La URL vive en `.env`
-y Vite la incrusta al hacer el build.
+### 10. Licencia de Object Sans
+Tipografía de display del flyer, de pago (Pangram Pangram). La página usa
+**Outfit** como sustituta libre. Ver `FONT TODO` en `src/styles/main.css`.
 
-Queda por hacer del lado de GHL:
+### 11. Logos en vectorial
+El wordmark y el favicon se generaron desde PNG. Si existen los SVG originales,
+sustituirlos.
 
-- Mapear los campos en el workflow a partir de la petición de muestra.
-- Borrar los dos referidos de prueba (ids en el README).
-- Considerar filtrar por `source == "broker-referral-hub"`, porque la URL queda
-  visible en el fuente de la página publicada.
+### D. Peso del entregable
+Va por **599 KB** porque los PDF se incrustan en base64. Con el segundo
+one-pager subirá más. Si se hace incómodo de pegar en GHL, la alternativa es
+subirlos a la media library de GHL y cambiar los `href`. Ver README.

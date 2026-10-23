@@ -93,6 +93,16 @@ document.getElementById('copyEmailBtn')?.addEventListener('click', async () => {
   }
 });
 
+// ============ Copy the broker talking points ============
+document.getElementById('copyPointsBtn')?.addEventListener('click', async () => {
+  const points = [...document.querySelectorAll('#talkingPoints li')]
+    .map((li) => `• ${li.textContent.trim()}`)
+    .join('\n');
+  if (await copyToClipboard(points)) {
+    flash(document.getElementById('pointsCopied'));
+  }
+});
+
 // ============ Copy the shareable video link ============
 document.getElementById('copyVideoBtn')?.addEventListener('click', async function () {
   const link = this.getAttribute('data-link');

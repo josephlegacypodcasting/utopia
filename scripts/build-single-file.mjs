@@ -19,6 +19,7 @@ const MIME = {
   '.webp': 'image/webp',
   '.gif': 'image/gif',
   '.svg': 'image/svg+xml',
+  '.pdf': 'application/pdf',
 };
 
 if (!fs.existsSync(path.join(DIST, 'index.html'))) {
@@ -43,9 +44,9 @@ html = html.replace(
     `<script type="module">\n${readDist(src).toString('utf8')}\n</script>`
 );
 
-// 3. Inline every local image as a data URI. This covers href as well as src,
-//    so the favicon travels inside the file instead of 404-ing once the
-//    markup is pasted into GoHighLevel.
+// 3. Inline every local asset as a data URI. This covers href as well as src,
+//    so the favicon and the downloadable PDFs travel inside the file instead
+//    of 404-ing once the markup is pasted into GoHighLevel.
 html = html.replace(/(src|href)="(\/assets\/[^"]+)"/g, (whole, attr, url) => {
   const ext = path.extname(url).toLowerCase();
   const mime = MIME[ext];
@@ -56,6 +57,15 @@ html = html.replace(/(src|href)="(\/assets\/[^"]+)"/g, (whole, attr, url) => {
 
 // 4. Drop preload hints that point at files no longer shipped.
 html = html.replace(/<link[^>]+rel="modulepreload"[^>]*>\n?/g, '');
+
+// Stamp the build so you can tell two downloads apart. Successive builds land
+// in Downloads under the same name ("…page (1).html", "(2)"…), and opening a
+// stale one looks exactly like a missing feature.
+const stamp = new Date().toISOString().replace('T', ' ').slice(0, 16);
+html = html.replace(
+  /<head>/,
+  `<head>\n<!-- Utopia broker hub — built ${stamp} UTC -->`
+);
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
 const outPath = path.join(OUT_DIR, OUT_FILE);

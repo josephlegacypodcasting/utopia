@@ -41,8 +41,14 @@ scripts/build-single-file.mjs   re-empaqueta el build en un HTML autocontenido
 Secciones de la página, en orden:
 
 `hero` · `about` (four-way win + why brokers) · `catch` (quién paga) ·
-carriers · `proof` (cifras) · `resources` · `email` · `quiz` (¿es un fit?) ·
-`refer` (pasos + formulario) · `trust` (clínico + HIPAA)
+carriers · `proof` (cifras) · `voices` (testimonios de miembros) ·
+`resources` (vídeo + one-pager + talking points) ·
+`email` · `quiz` (¿es un fit?) · `refer` (pasos + formulario) ·
+`trust` (clínico + HIPAA)
+
+Los **talking points** del bróker viven en la página, en un `<details>` dentro
+de la sección de recursos, no en una descarga: el one-pager se reenvía al
+cliente, pero los talking points los lee el bróker.
 
 Todo lo que hay en `public/` se sirve desde la raíz: `public/assets/img/aetna.png`
 se referencia como `/assets/img/aetna.png`.
@@ -190,10 +196,22 @@ que pueda llegar a nadie.
 npm run build:ghl
 ```
 
-Genera `dist-ghl/utopia-broker-landing-page.html` (~426 KB): CSS, JS, el
-wordmark, el favicon y los 8 logos de aseguradoras van inline, sin ninguna
-referencia externa salvo Google Fonts. Ese fichero se pega tal cual en un bloque
-de custom code / HTML de GHL.
+Genera `dist-ghl/utopia-broker-landing-page.html` (~598 KB): CSS, JS, el
+wordmark, el favicon, los 8 logos de aseguradoras y los PDF descargables van
+inline, sin ninguna referencia externa salvo Google Fonts. Ese fichero se pega
+tal cual en un bloque de custom code / HTML de GHL.
+
+### Los PDF van incrustados
+
+Los one-pagers se meten como `data:` URI, así que la descarga funciona sin
+alojar nada en ningún sitio. El precio es el peso: cada PDF engorda el fichero
+un ~33% de su tamaño (el overview, de 128 KB, añade unos 170 KB).
+
+Si el fichero se hace incómodo de pegar en GHL, la alternativa es subir los PDF
+a la **media library de GHL** y cambiar el `href` de cada `.dl-link` en
+`index.html` por esa URL. Tiene además la ventaja de que se puede actualizar un
+documento sin regenerar la página. Los `href` que empiezan por `/assets/` se
+incrustan; cualquier URL absoluta se deja intacta.
 
 ## Pendientes
 

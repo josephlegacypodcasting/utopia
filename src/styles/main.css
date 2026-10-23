@@ -81,8 +81,12 @@
   .logo img{height:34px;width:auto;}
   footer .logo img{height:40px;}
   .nav-links{display:flex;gap:26px;align-items:center;font-size:14px;font-weight:600;}
-  .nav-links a{color:var(--ink);text-decoration:none;}
-  .nav-links a:hover{color:var(--blue);}
+  /* Exclude the CTA: ".nav-links a" (0,1,1) outranks ".btn" (0,1,0), so
+     without :not() the button inherited ink on blue — 2.27:1 — and the hover
+     rule turned it blue on blue. */
+  .nav-links a:not(.btn){color:var(--ink);text-decoration:none;}
+  .nav-links a:not(.btn):hover{color:var(--blue);}
+  .nav-links a.btn{text-decoration:none;}
   .btn{
     display:inline-block;background:var(--blue);color:var(--white);
     font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:.01em;
@@ -549,4 +553,66 @@
   .hp-field{
     position:absolute;left:-9999px;top:auto;
     width:1px;height:1px;overflow:hidden;
+  }
+
+  /* Methodology line under the stat tiles. Small, but it has to be legible:
+     these numbers are self-reported and the page says so. */
+  .stat-note{
+    margin-top:22px;font-size:13.5px;line-height:1.5;
+    color:var(--ink-soft);max-width:80ch;
+  }
+  /* The catch answers run to two paragraphs each now. */
+  .catch-item p + p{margin-top:12px;}
+
+  /* Broker talking points: on the page, not behind a download. */
+  .tp-icon{
+    min-width:46px;height:46px;border-radius:50%;background:var(--white);
+    display:flex;align-items:center;justify-content:center;padding:0;
+  }
+  .tp-icon::before{display:none;} /* no PDF corner fold on this one */
+  .tp-icon svg{
+    width:22px;height:22px;stroke:var(--blue);fill:none;
+    stroke-width:2;stroke-linecap:round;
+  }
+  .tp summary{
+    font-family:var(--font-display);font-weight:700;font-size:12.5px;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--amber);
+    cursor:pointer;list-style:none;padding:4px 0;
+  }
+  .tp summary::-webkit-details-marker{display:none;}
+  .tp summary::after{content:" \25BE";}
+  .tp[open] summary::after{content:" \25B4";}
+  .tp summary:hover{text-decoration:underline;}
+  .tp summary:focus-visible{outline:2px solid var(--white);outline-offset:3px;}
+  .tp-list{
+    list-style:none;margin:14px 0 16px;display:flex;flex-direction:column;gap:10px;
+  }
+  .tp-list li{
+    font-size:13.5px;line-height:1.5;color:#D6E4F5;
+    padding-left:16px;position:relative;
+  }
+  .tp-list li::before{
+    content:"";position:absolute;left:0;top:8px;
+    width:6px;height:6px;border-radius:50%;background:var(--amber);
+  }
+
+  /* Member voices. Sits between the numbers and the dark resources block,
+     so it takes the soft tint to avoid two white sections in a row. */
+  .voices{background:var(--paper-soft);border-bottom:1px solid var(--line);}
+  .voice-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:36px;
+  }
+  .voice{
+    background:var(--white);border:1px solid var(--line);border-radius:var(--radius-lg);
+    padding:26px 26px 22px;display:flex;flex-direction:column;gap:16px;
+  }
+  .voice p{font-size:16px;line-height:1.55;color:var(--ink);}
+  .voice cite{
+    font-style:normal;font-size:11.5px;font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--blue);margin-top:auto;
+  }
+  .voice cite::before{content:"\2014\00a0";}
+
+  @media (max-width:900px){
+    .voice-grid{grid-template-columns:1fr;}
   }
