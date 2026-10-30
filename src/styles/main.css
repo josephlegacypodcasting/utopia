@@ -223,15 +223,9 @@
   }
   .video-frame{
     aspect-ratio:16/9;background:rgba(0,0,0,.28);border-radius:var(--radius);
-    display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;
-    border:1px dashed rgba(255,255,255,.25);
+    overflow:hidden;
   }
-  .play-btn{
-    width:64px;height:64px;border-radius:50%;background:var(--amber);
-    display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;
-  }
-  .play-btn::after{content:"";border-left:18px solid var(--white);border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:4px;}
-  .video-frame .placeholder-note{font-size:12px;color:#8f8f8f;letter-spacing:.06em;text-transform:uppercase;}
+  .video-frame iframe{display:block;width:100%;height:100%;border:0;}
   .video-card h3{color:var(--white);font-size:19px;font-weight:800;}
   .video-card p{font-size:14.5px;color:#AFC8E4;}
   .share-row{display:flex;gap:10px;flex-wrap:wrap;}
@@ -331,15 +325,6 @@
      v1.1 — sections added after stakeholder review
      ============================================================ */
 
-  /* Placeholder copy awaiting real content from Utopia.
-     TODO: delete this rule once every .needs-copy block is filled in —
-     it is deliberately loud so nothing ships with bracketed text. */
-  .needs-copy{
-    background:repeating-linear-gradient(45deg,rgba(214,51,132,.08),rgba(214,51,132,.08) 10px,transparent 10px,transparent 20px);
-    outline:1px dashed rgba(214,51,132,.55);outline-offset:3px;
-    color:#A11D68;
-  }
-
   /* ---------- Where's the catch ---------- */
   .catch{background:var(--blue);color:#DCE8F7;}
   .catch h2{color:var(--white);}
@@ -352,7 +337,6 @@
   }
   .catch-item h3{font-size:19px;margin-bottom:10px;color:var(--white);}
   .catch-item p{font-size:15px;color:#CBDCF2;}
-  .catch .needs-copy{color:#FFD6EC;}
 
   /* ---------- Carrier footnote ---------- */
   .carrier-note{
@@ -563,38 +547,6 @@
   }
   /* The catch answers run to two paragraphs each now. */
   .catch-item p + p{margin-top:12px;}
-
-  /* Broker talking points: on the page, not behind a download. */
-  .tp-icon{
-    min-width:46px;height:46px;border-radius:50%;background:var(--white);
-    display:flex;align-items:center;justify-content:center;padding:0;
-  }
-  .tp-icon::before{display:none;} /* no PDF corner fold on this one */
-  .tp-icon svg{
-    width:22px;height:22px;stroke:var(--blue);fill:none;
-    stroke-width:2;stroke-linecap:round;
-  }
-  .tp summary{
-    font-family:var(--font-display);font-weight:700;font-size:12.5px;
-    letter-spacing:.08em;text-transform:uppercase;color:var(--amber);
-    cursor:pointer;list-style:none;padding:4px 0;
-  }
-  .tp summary::-webkit-details-marker{display:none;}
-  .tp summary::after{content:" \25BE";}
-  .tp[open] summary::after{content:" \25B4";}
-  .tp summary:hover{text-decoration:underline;}
-  .tp summary:focus-visible{outline:2px solid var(--white);outline-offset:3px;}
-  .tp-list{
-    list-style:none;margin:14px 0 16px;display:flex;flex-direction:column;gap:10px;
-  }
-  .tp-list li{
-    font-size:13.5px;line-height:1.5;color:#D6E4F5;
-    padding-left:16px;position:relative;
-  }
-  .tp-list li::before{
-    content:"";position:absolute;left:0;top:8px;
-    width:6px;height:6px;border-radius:50%;background:var(--amber);
-  }
 
   /* Member voices. Sits between the numbers and the dark resources block,
      so it takes the soft tint to avoid two white sections in a row. */

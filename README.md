@@ -42,13 +42,19 @@ Secciones de la página, en orden:
 
 `hero` · `about` (four-way win + why brokers) · `catch` (quién paga) ·
 carriers · `proof` (cifras) · `voices` (testimonios de miembros) ·
-`resources` (vídeo + one-pager + talking points) ·
+`resources` (vídeo + dos one-pagers) ·
 `email` · `quiz` (¿es un fit?) · `refer` (pasos + formulario) ·
 `trust` (clínico + HIPAA)
 
-Los **talking points** del bróker viven en la página, en un `<details>` dentro
-de la sección de recursos, no en una descarga: el one-pager se reenvía al
-cliente, pero los talking points los lee el bróker.
+En recursos hay **dos PDF** con públicos distintos: el *Overview One-Pager* se
+reenvía al cliente; *What's In It for You* es para el bróker. Este último
+sustituyó (30 oct, a petición de Anna) a los seis talking points que antes
+vivían en la página; siguen en el historial de git si hacen falta.
+
+El **vídeo** (`UWC_BrokerClip_V1`, ~260 MB) se reproduce desde Google Drive
+con un `<iframe>`: es demasiado grande para incrustarlo en el build de GHL.
+Si se mueve a Vimeo/YouTube/media de GHL, hay que cambiar el `src` del iframe
+y el `data-link` del botón "Copy video link to share".
 
 Todo lo que hay en `public/` se sirve desde la raíz: `public/assets/img/aetna.png`
 se referencia como `/assets/img/aetna.png`.
@@ -196,7 +202,7 @@ que pueda llegar a nadie.
 npm run build:ghl
 ```
 
-Genera `dist-ghl/utopia-broker-landing-page.html` (~598 KB): CSS, JS, el
+Genera `dist-ghl/utopia-broker-landing-page.html` (~975 KB): CSS, JS, el
 wordmark, el favicon, los 8 logos de aseguradoras y los PDF descargables van
 inline, sin ninguna referencia externa salvo Google Fonts. Ese fichero se pega
 tal cual en un bloque de custom code / HTML de GHL.
@@ -205,7 +211,8 @@ tal cual en un bloque de custom code / HTML de GHL.
 
 Los one-pagers se meten como `data:` URI, así que la descarga funciona sin
 alojar nada en ningún sitio. El precio es el peso: cada PDF engorda el fichero
-un ~33% de su tamaño (el overview, de 128 KB, añade unos 170 KB).
+un ~33% de su tamaño (el overview, de 128 KB, añade unos 170 KB; el de
+brokers, de 286 KB, unos 380 KB).
 
 Si el fichero se hace incómodo de pegar en GHL, la alternativa es subir los PDF
 a la **media library de GHL** y cambiar el `href` de cada `.dl-link` en
@@ -215,15 +222,9 @@ incrustan; cualquier URL absoluta se deja intacta.
 
 ## Pendientes
 
-Ver **[CONTENT-TODO.md](CONTENT-TODO.md)** — todo lo que la página necesita de
-Utopia antes de publicarse (cifras con fuente, quién paga, credenciales
-clínicas, HIPAA, revisión legal de los logos, vídeo y PDFs).
+Ver **[CONTENT-TODO.md](CONTENT-TODO.md)** — lo que queda antes de publicar
+(confirmaciones de Utopia, revisión legal de los logos, reglas del quiz).
 
-Los textos provisionales llevan la clase `.needs-copy` y se pintan con rayas
-naranjas para que no se escapen a producción:
-
-```bash
-grep -c "needs-copy" index.html
-```
-
-Cuando llegue a 0, borra la regla `.needs-copy` de `src/styles/main.css`.
+Ya no queda ningún texto provisional en la página: la clase `.needs-copy` y
+su regla CSS se retiraron el 30 oct. Si vuelve a hacer falta marcar copy
+pendiente, se puede recuperar del historial de git.

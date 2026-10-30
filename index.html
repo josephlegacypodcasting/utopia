@@ -38,7 +38,7 @@
       <a href="#quiz" class="btn">Take the Quiz</a>
       <a href="#resources" class="btn btn-ghost">Get the Materials</a>
     </div>
-    <p class="for-brokers">Built for you to forward: a two-minute overview, two client-ready one-pagers, and an intro email you can send in under a minute.</p>
+    <p class="for-brokers">Built for you to forward: a two-minute overview, a client-ready one-pager, and an intro email you can send in under a minute.</p>
   </div>
 </header>
 
@@ -249,24 +249,26 @@
   <div class="wrap">
     <div class="eyebrow">Share With Your Clients</div>
     <h2>Everything you need, ready to forward.</h2>
-    <p class="section-intro">Watch the two-minute overview, then send it along with the one-pager to any client you think is a fit. The talking points below are for you, not for them.</p>
+    <p class="section-intro">Watch the two-minute overview, then send it along with the overview one-pager to any client you think is a fit. The second one-pager is for you, not for them.</p>
 
     <div class="res-grid">
       <!-- VIDEO -->
       <div class="video-card">
         <div class="video-frame">
-          <!-- TECH NOTE: Replace this placeholder with the embedded video player
-               (YouTube/Vimeo/Wistia iframe or hosted MP4). -->
-          <button class="play-btn" aria-label="Play the Utopia overview video"></button>
-          <span class="placeholder-note">[ Video embed goes here ]</span>
+          <!-- UWC_BrokerClip_V1 (Anna, 29 Oct), played from Google Drive. The
+               MP4 is ~260 MB, far too big to inline in the GHL build. To move
+               it to Vimeo/YouTube/GHL media, swap this src and the data-link
+               on the copy button below. -->
+          <iframe src="https://drive.google.com/file/d/1ydBDONOq3it26TL7au_XrHEwEs19t0HK/preview"
+                  title="Utopia WellCare in 2 minutes" loading="lazy"
+                  allow="autoplay; fullscreen" allowfullscreen></iframe>
         </div>
         <div>
           <h3>Utopia in 2 minutes</h3>
           <p>A quick overview of what Utopia is, how it's covered under the health plan, and what the employee experience looks like.</p>
         </div>
         <div class="share-row">
-          <!-- TECH NOTE: Wire "Copy video link" to the public/shareable video URL. -->
-          <button class="btn-small" id="copyVideoBtn" data-link="[SHAREABLE VIDEO URL]">Copy video link to share</button>
+          <button class="btn-small" id="copyVideoBtn" data-link="https://drive.google.com/file/d/1ydBDONOq3it26TL7au_XrHEwEs19t0HK/view">Copy video link to share</button>
           <span class="copy-feedback" id="videoCopied">Link copied</span>
         </div>
       </div>
@@ -285,35 +287,16 @@
                download="utopia-overview-one-pager.pdf">Download PDF &darr;</a>
           </div>
         </div>
-        <!-- Utopia's own six points, from the client follow-up notes of
-             30 Sep 2026. They live on the page rather than behind a download:
-             the broker reads these, they do not forward them.
-             INCOMING (Anna, 15 Oct): Utopia is producing a PDF for this slot,
-             reframed as "what is in it for them". When it lands, add it as a
-             download link inside this card and keep the six points visible —
-             do not move the text back behind the download. -->
+        <!-- Broker-facing guide (Anna, 29 Oct). It replaces the six on-page
+             talking points: the overview above is for the client, this one is
+             for the broker. -->
         <div class="dl-card">
-          <div class="dl-icon tp-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M4 6h1M4 12h1M4 18h1M9 6h11M9 12h11M9 18h11"/></svg>
-          </div>
+          <div class="dl-icon" aria-hidden="true">PDF</div>
           <div>
-            <h3>Broker Talking Points</h3>
-            <p>The six lines that answer almost everything a client asks. Utopia's own wording, short enough to use mid-call.</p>
-            <details class="tp">
-              <summary>Show the talking points</summary>
-              <ul class="tp-list" id="talkingPoints">
-                <li>Utopia helps employers maximize the preventive nutrition counseling benefit they already have.</li>
-                <li>No PEPM.</li>
-                <li>No cost to employees &mdash; the service is covered under preventive care.</li>
-                <li>Easy for HR and broker teams: no setup, no contract, no integration. Utopia provides the engagement materials and the support.</li>
-                <li>How does Utopia get paid? It is an in-network provider and bills the plan like any other &mdash; think of a primary care doctor doing an annual exam. The visit is free for the employee.</li>
-                <li>Schedule a call with Utopia and your client, and take the credit for bringing them something they will be glad to have.</li>
-              </ul>
-              <div class="share-row">
-                <button class="btn-small" id="copyPointsBtn">Copy talking points</button>
-                <span class="copy-feedback" id="pointsCopied">Copied</span>
-              </div>
-            </details>
+            <h3>What&rsquo;s In It for You</h3>
+            <p>How brokers are using Utopia to win new business, deepen client relationships, and take the credit for a benefit that&rsquo;s easy to say yes to.</p>
+            <a class="dl-link" href="/assets/docs/utopia-whats-in-it-for-you.pdf"
+               download="utopia-whats-in-it-for-you.pdf">Download the one-pager &darr;</a>
           </div>
         </div>
       </div>
@@ -597,15 +580,15 @@ Best,
     <div class="trust-grid">
       <div class="trust-item">
         <h3>Who delivers the care</h3>
-        <p class="needs-copy">[ CONFIRM: all clinicians are Registered Dietitian Nutritionists (RDN), credentialed and licensed in the states where they practice. Add how many, and the credentialing process. ]</p>
+        <p>Every session is with a Registered Dietitian, not a coach or an app. Utopia&rsquo;s RDs bring an average of 10+ years of clinical experience, and have additional training in functional nutrition. They&rsquo;re contracted in-network and billed like any other provider on the plan.</p>
       </div>
       <div class="trust-item">
         <h3>How health data is handled</h3>
-        <p class="needs-copy">[ CONFIRM: HIPAA posture, what the employer does and does not see (individual data never goes back to the employer &mdash; say so explicitly), where data is stored, and any security certification. ]</p>
+        <p>Utopia WellCare is fully HIPAA compliant. Sessions are one-on-one over secure, encrypted telehealth video. Individual health information is never shared with the employer. What an employee discusses with their dietitian stays between them and their dietitian.</p>
       </div>
       <div class="trust-item">
         <h3>What the employer sees</h3>
-        <p class="needs-copy">[ CONFIRM: what reporting the employer receives, at what cadence, and at what level of aggregation. ]</p>
+        <p>Employers get detailed analytics and engagement reports covering employee demographics, appointment activity, survey responses, and overall wellness goals. Reporting stays at the program level and is never tied to an individual&rsquo;s health information.</p>
       </div>
     </div>
   </div>
