@@ -255,13 +255,13 @@
       <!-- VIDEO -->
       <div class="video-card">
         <div class="video-frame">
-          <!-- UWC_BrokerClip_V1 (Anna, 29 Oct), played from Google Drive. The
-               MP4 is ~260 MB, far too big to inline in the GHL build. To move
-               it to Vimeo/YouTube/GHL media, swap this src and the data-link
-               on the copy button below. -->
-          <iframe src="https://drive.google.com/file/d/1ydBDONOq3it26TL7au_XrHEwEs19t0HK/preview"
-                  title="Utopia WellCare in 2 minutes" loading="lazy"
-                  allow="autoplay; fullscreen" allowfullscreen></iframe>
+          <!-- UWC_BrokerClip_V1 (Anna, 29 Oct), Wistia embed as supplied.
+               The scripts load from fast.wistia.com, so the GHL build leaves
+               them as external references. -->
+          <script src="https://fast.wistia.com/player.js" async></script>
+          <script src="https://fast.wistia.com/embed/5v4tl98ppm.js" async type="module"></script>
+          <style>wistia-player[media-id='5v4tl98ppm']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/5v4tl98ppm/swatch'); display: block; filter: blur(5px); padding-top:56.25%; }</style>
+          <wistia-player media-id="5v4tl98ppm" aspect="1.7777777777777777"></wistia-player>
         </div>
         <div>
           <h3>Utopia in 2 minutes</h3>

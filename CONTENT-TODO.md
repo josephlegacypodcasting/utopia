@@ -14,7 +14,7 @@ regla CSS se retiraron.
 | --- | --- |
 | **Las 3 cajas de "What your client's HR team will ask you"** — quién da la atención, HIPAA, qué ve el empleador | Copy de Anna, 29 oct, pegado tal cual |
 | **One-pager "What's In It for You"** — sustituye a la tarjeta de talking points (título, subtexto y "Download the one-pager") | PDF y copy de Anna, 29 oct |
-| **Vídeo final** `UWC_BrokerClip_V1` — embebido desde Google Drive; el botón "Copy video link" apunta al mismo fichero | Anna, 29 oct |
+| **Vídeo final** `UWC_BrokerClip_V1` — embed de Wistia; el botón "Copy video link" apunta al fichero en Google Drive | Anna, 29 oct; embed de Wistia, 30 oct |
 
 Ajustes de copy derivados (no los pidió Anna, pero dejaban de ser ciertos):
 
@@ -72,12 +72,11 @@ funding/carrier descalifica.
 
 ## Técnicos
 
-### Alojamiento del vídeo
-Se sirve desde Google Drive (el MP4 pesa ~260 MB, imposible de incrustar).
-Funciona, pero el reproductor de Drive es básico y depende de que el fichero
-siga compartido como "cualquiera con el enlace". Mejor a medio plazo: Vimeo,
-YouTube (oculto) o la media library de GHL. Cambiar el `src` del iframe y el
-`data-link` del botón.
+### Enlace para compartir el vídeo
+El reproductor ya es Wistia, pero el botón "Copy video link to share" sigue
+copiando el enlace de Google Drive (que depende de que el fichero siga
+compartido como "cualquiera con el enlace"). Si Utopia tiene una URL pública
+de Wistia, cambiar el `data-link` del botón.
 
 ### Peso del entregable
 El HTML de GHL pasa a **~975 KB** por los dos PDF en base64. Si se hace

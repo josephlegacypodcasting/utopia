@@ -51,10 +51,11 @@ reenvía al cliente; *What's In It for You* es para el bróker. Este último
 sustituyó (30 oct, a petición de Anna) a los seis talking points que antes
 vivían en la página; siguen en el historial de git si hacen falta.
 
-El **vídeo** (`UWC_BrokerClip_V1`, ~260 MB) se reproduce desde Google Drive
-con un `<iframe>`: es demasiado grande para incrustarlo en el build de GHL.
-Si se mueve a Vimeo/YouTube/media de GHL, hay que cambiar el `src` del iframe
-y el `data-link` del botón "Copy video link to share".
+El **vídeo** (`UWC_BrokerClip_V1`) se reproduce con el embed de **Wistia**
+(media `5v4tl98ppm`), tal cual lo dio el cliente. Sus scripts cargan de
+`fast.wistia.com`, así que el build de GHL los deja como referencias externas.
+El botón "Copy video link to share" sigue apuntando al fichero en Google
+Drive; si hay una URL pública de Wistia para compartir, va en su `data-link`.
 
 Todo lo que hay en `public/` se sirve desde la raíz: `public/assets/img/aetna.png`
 se referencia como `/assets/img/aetna.png`.
@@ -204,7 +205,7 @@ npm run build:ghl
 
 Genera `dist-ghl/utopia-broker-landing-page.html` (~975 KB): CSS, JS, el
 wordmark, el favicon, los 8 logos de aseguradoras y los PDF descargables van
-inline, sin ninguna referencia externa salvo Google Fonts. Ese fichero se pega
+inline, sin ninguna referencia externa salvo Google Fonts y el reproductor de Wistia. Ese fichero se pega
 tal cual en un bloque de custom code / HTML de GHL.
 
 ### Los PDF van incrustados
