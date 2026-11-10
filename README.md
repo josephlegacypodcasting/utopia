@@ -44,7 +44,12 @@ Secciones de la página, en orden:
 carriers · `proof` (cifras) · `voices` (testimonios de miembros) ·
 `resources` (vídeo + dos one-pagers) ·
 `email` · `quiz` (¿es un fit?) · `refer` (pasos + formulario) ·
-`trust` (clínico + HIPAA)
+`book` (agenda de 30 min en Calendly) · `trust` (clínico + HIPAA)
+
+La agenda es el embed inline de Calendly (`calendly.com/ndowney-phj8/30min`).
+Igual que Wistia, su script carga de `assets.calendly.com` y el build de GHL lo
+deja como referencia externa. Debajo hay un enlace de respaldo que abre el
+calendario en otra pestaña.
 
 En recursos hay **dos PDF** con públicos distintos: el *Overview One-Pager* se
 reenvía al cliente; *What's In It for You* es para el bróker. Este último

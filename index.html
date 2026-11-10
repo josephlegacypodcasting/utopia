@@ -22,6 +22,7 @@
       <a href="#quiz">Is It a Fit</a>
       <a href="#resources">Resources</a>
       <a href="#email">Client Email</a>
+      <a href="#book">Book a Call</a>
       <a href="#refer" class="btn">Refer a Group</a>
     </div>
   </div>
@@ -564,6 +565,24 @@ Best,
       <p class="form-status" id="formStatus" role="status" aria-live="polite" hidden></p>
       <p class="form-note">Your details plus the group&rsquo;s name and size are all we need. Everything else is optional &mdash; it just helps us come back to you with a better answer.</p>
     </form>
+  </div>
+</section>
+
+<!-- ============ BOOK A CALL ============ -->
+<!-- Calendly inline embed (30-minute meeting with a Utopia representative).
+     Like Wistia, the widget script loads from assets.calendly.com, so the
+     GHL build leaves it as an external reference. The plain link below the
+     widget is the fallback if the script is blocked or slow to load. -->
+<section class="book" id="book">
+  <div class="wrap">
+    <div class="eyebrow">Talk to Us First</div>
+    <h2>Rather talk it through? Book 30 minutes.</h2>
+    <p class="section-intro">Pick a time with a Utopia representative. Bring a group you have in mind, or just your questions &mdash; no referral needed to book.</p>
+    <div class="book-card">
+      <div class="calendly-inline-widget" data-url="https://calendly.com/ndowney-phj8/30min?hide_gdpr_banner=1"></div>
+    </div>
+    <p class="book-fallback">Calendar not loading? <a href="https://calendly.com/ndowney-phj8/30min" target="_blank" rel="noopener">Open it in a new tab &rarr;</a></p>
+    <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
   </div>
 </section>
 

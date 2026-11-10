@@ -452,6 +452,25 @@
   .email-actions{display:flex;align-items:center;gap:8px;}
   #emailMailto{text-decoration:none;display:inline-block;}
 
+  /* ---------- Book a call (Calendly) ---------- */
+  /* Dark, like resources: it sits between the white form and the soft-tinted
+     trust block, and it is the page's second conversion point. */
+  .book{background:var(--blue-deep);color:#D6E4F5;}
+  .book h2,.book .eyebrow{color:var(--white);}
+  .book .section-intro{color:#AFC8E4;}
+  .book-card{
+    margin-top:36px;background:var(--white);border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  /* Calendly sizes its iframe to this box; 700px fits the month view plus
+     time slots without an inner scrollbar on desktop. */
+  .calendly-inline-widget{min-width:320px;height:700px;}
+  .book-fallback{margin-top:16px;font-size:14px;color:#AFC8E4;}
+  .book-fallback a{color:var(--amber-on-blue);font-weight:700;}
+  @media (max-width:620px){
+    .calendly-inline-widget{height:1000px;}
+  }
+
   /* ---------- Clinical / privacy trust ---------- */
   .trust{background:var(--paper-soft);border-top:1px solid var(--line);}
   .trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px;}
