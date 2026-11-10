@@ -105,6 +105,17 @@ document.getElementById('copyVideoBtn')?.addEventListener('click', async functio
 const form = document.getElementById('referralForm');
 const status = document.getElementById('formStatus');
 
+/**
+ * form.reset() does not clear a hidden input: for type="hidden", setting
+ * .value rewrites the default value too, so reset() just restores it. Clear
+ * renewal_window (filled in by the quiz) by hand, or the next referral sent
+ * from this page would inherit the previous group's renewal window.
+ */
+function resetForm() {
+  form.reset();
+  if (form.elements.renewal_window) form.elements.renewal_window.value = '';
+}
+
 function setStatus(message, state) {
   if (!status) return;
   status.textContent = message;
@@ -125,7 +136,7 @@ form?.addEventListener('submit', async (e) => {
   delete payload.company_website;
   if (trap) {
     console.warn('[referral] honeypot tripped — submission dropped, nothing sent.');
-    form.reset();
+    resetForm();
     setStatus("Thanks — we've got it. We'll follow up with you shortly.", 'ok');
     return;
   }
@@ -165,7 +176,7 @@ form?.addEventListener('submit', async (e) => {
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-    form.reset();
+    resetForm();
     setStatus("Thanks — we've got it. We'll follow up with you shortly.", 'ok');
   } catch (err) {
     console.error('[referral] submission failed:', err);

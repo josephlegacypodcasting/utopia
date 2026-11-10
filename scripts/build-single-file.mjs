@@ -31,6 +31,12 @@ let html = fs.readFileSync(path.join(DIST, 'index.html'), 'utf8');
 
 const readDist = (url) => fs.readFileSync(path.join(DIST, url.replace(/^\//, '')));
 
+// 0. Strip HTML comments. index.html carries internal notes (legal TODOs,
+//    unconfirmed figures, client names kept off the page on purpose) that
+//    must not ship in the published source. Done before anything is inlined,
+//    so no CSS or JS can be touched by this.
+html = html.replace(/<!--[\s\S]*?-->\n?/g, '');
+
 // 1. Inline the stylesheet(s) Vite emitted.
 html = html.replace(
   /<link[^>]+rel="stylesheet"[^>]*href="(\/assets\/[^"]+\.css)"[^>]*>/g,

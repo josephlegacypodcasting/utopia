@@ -197,6 +197,13 @@ borrar del CRM:
 Ambos con email `test@example.com`, que es un dominio reservado: no hay correo
 que pueda llegar a nadie.
 
+El 10 nov 2026 el formulario pasó a un **trigger nuevo**
+(`…/webhook-trigger/0a662351-…`) y se le mandó un tercer envío, desde el
+propio formulario, para que capturase la muestra con las 12 claves:
+`TEST 3 - Claude Code (ignorar)`, también con `test@example.com`. GHL respondió
+`Success: test request received` y no devolvió id. Si el workflow ya estaba
+activo y creó un contacto, también hay que borrarlo.
+
 ## Publicar en GoHighLevel
 
 ```bash

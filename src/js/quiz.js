@@ -132,7 +132,22 @@ if (card) {
     render();
   });
 
+  /**
+   * Undo what prefillForm() carried over, but only where the field still holds
+   * the quiz's answer: anything the broker changed by hand is left alone.
+   * Setting '' puts a <select> back on its "Select…" placeholder.
+   */
+  function clearPrefill() {
+    const form = document.getElementById('referralForm');
+    if (!form) return;
+    for (const [field, value] of Object.entries(answers)) {
+      const input = form.elements[field];
+      if (input && input.value === value) input.value = '';
+    }
+  }
+
   restart?.addEventListener('click', () => {
+    clearPrefill();
     for (const k of Object.keys(answers)) delete answers[k];
     current = 0;
     render();
